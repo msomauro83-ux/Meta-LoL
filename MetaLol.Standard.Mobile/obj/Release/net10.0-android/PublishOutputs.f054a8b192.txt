@@ -1,0 +1,3 @@
+C:\Users\Usuario\Documents\Meta LoL\artifacts\android-standard\publish\com.metalol.standard.manual-Signed.apk
+C:\Users\Usuario\Documents\Meta LoL\artifacts\android-standard\publish\com.metalol.standard.manual.apk
+C:\Users\Usuario\Documents\Meta LoL\artifacts\android-standard\publish\_Microsoft.Android.Resource.Designer.dll

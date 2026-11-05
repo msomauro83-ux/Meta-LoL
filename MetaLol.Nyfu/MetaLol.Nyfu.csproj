@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Version>1.0</Version>
+    <AssemblyName>MetaLol.Nyfu</AssemblyName>
+    <Product>Meta LoL · Nÿf ú #LAS</Product>
+    <Description>Edición multilínea para Nÿf ú #LAS</Description>
+    <ApplicationIcon>Assets\MetaLol.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="MetaLol.Nyfu.Tests" />
+    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="10.0.4" />
+    <PackageReference Include="System.Management" Version="10.0.4" />
+    <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="3.0.5" />
+  </ItemGroup>
+</Project>

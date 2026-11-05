@@ -1,0 +1,245 @@
+<!--
+***********************************************************************************************
+Microsoft.Android.Sdk.AssemblyResolution.targets
+
+This file contains the .NET 5-specific implementation for the
+_ResolveAssemblies MSBuild target.
+
+***********************************************************************************************
+-->
+
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <UsingTask TaskName="Xamarin.Android.Tasks.ProcessAssemblies"      AssemblyFile="$(_XamarinAndroidBuildTasksAssembly)" />
+  <UsingTask TaskName="Xamarin.Android.Tasks.ProcessNativeLibraries" AssemblyFile="$(_XamarinAndroidBuildTasksAssembly)" />
+  <UsingTask TaskName="Xamarin.Android.Tasks.StripNativeLibraries" AssemblyFile="$(_XamarinAndroidBuildTasksAssembly)" />
+
+  <!-- HACK: workaround for: https://github.com/dotnet/sdk/issues/25679 -->
+  <Target Name="_RemoveLinuxFrameworkReferences"
+      AfterTargets="ProcessFrameworkReferences">
+    <ItemGroup>
+      <_ProblematicRIDs Include="linux-arm;linux-arm64;linux-x86;linux-x64;linux-bionic-arm;linux-bionic-arm64;linux-bionic-x86;linux-bionic-x64" />
+      <PackageDownload Remove="Microsoft.NETCore.App.Host.%(_ProblematicRIDs.Identity)" />
+    </ItemGroup>
+  </Target>
+
+  <PropertyGroup Condition=" '$(_ComputeFilesToPublishForRuntimeIdentifiers)' == 'true' ">
+    <OutputPath Condition=" '$(_OuterOutputPath)' != '' ">$(_OuterOutputPath)</OutputPath>
+    <OutDir     Condition=" '$(_OuterOutputPath)' != '' ">$(_OuterOutputPath)</OutDir>
+    <PublishDir>$(OutputPath)</PublishDir>
+    <BuildDependsOn>_RemoveLegacyDesigner;$(BuildDependsOn)</BuildDependsOn>
+    <!-- We don't want IncrementalClean to run here, or files get deleted -->
+    <CoreBuildDependsOn>
+      $([MSBuild]::Unescape($(CoreBuildDependsOn.Replace('IncrementalClean;', ''))))
+    </CoreBuildDependsOn>
+    <CompileDependsOn>
+      AndroidPrepareForBuild;
+      $(CompileDependsOn);
+    </CompileDependsOn>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- When marshal methods are enabled, AOT needs to run after the GenerateJavaStubs task -->
+    <_RunAotMaybe Condition=" '$(_AndroidUseMarshalMethods)' != 'True' ">_AndroidAot</_RunAotMaybe>
+  </PropertyGroup>
+
+  <Target Name="_ComputeFilesToPublishForRuntimeIdentifiers"
+      DependsOnTargets="BuildOnlySettings;_FixupIntermediateAssembly;ResolveReferences;ComputeFilesToPublish;$(_RunAotMaybe)"
+      Returns="@(ResolvedFileToPublish)">
+      <ItemGroup>
+        <ResolvedFileToPublish Remove="@(_SourceItemsToCopyToPublishDirectory)" />
+        <ResolvedFileToPublish
+            Condition=" '%(ResolvedFileToPublish.RuntimeIdentifier)' == '' "
+            Update="@(ResolvedFileToPublish)"
+            RuntimeIdentifier="$(RuntimeIdentifier)"
+        />
+      </ItemGroup>
+      <AndroidWarning
+          Code="XA1024"
+          ResourceName="XA1024"
+          FormatArguments="%(_SourceItemsToCopyToPublishDirectory.Identity)"
+          Condition=" '%(Extension)' == '.config' "
+      />
+  </Target>
+
+  <Target Name="_FixupIntermediateAssembly" Condition=" '$(_OuterIntermediateAssembly)' != '' ">
+    <ItemGroup>
+      <IntermediateAssembly Remove="@(IntermediateAssembly)" />
+      <IntermediateAssembly Include="$(_OuterIntermediateAssembly)" />
+    </ItemGroup>
+    <ItemGroup Condition=" '$(AndroidUseDesignerAssembly)' == 'True' ">
+      <ReferenceCopyLocalPaths Include="$(_GenerateResourceDesignerAssemblyOutput)">
+        <PostprocessAssembly>True</PostprocessAssembly>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        <IsTrimmable>false</IsTrimmable>
+        <RuntimeIdentifier>android</RuntimeIdentifier>
+      </ReferenceCopyLocalPaths>
+    </ItemGroup>
+    <ItemGroup Condition=" '@(_DebugSymbolsIntermediatePath->Count())' != '0' ">
+      <_DebugSymbolsIntermediatePath Remove="@(_DebugSymbolsIntermediatePath)" />
+      <_DebugSymbolsIntermediatePath Include="$([System.IO.Path]::ChangeExtension ($(_OuterIntermediateAssembly), '.pdb'))" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="_ResolveAssemblies">
+    <ItemGroup>
+      <_RIDs Include="$(RuntimeIdentifier)"  Condition=" '$(RuntimeIdentifiers)' == '' " />
+      <_RIDs Include="$(RuntimeIdentifiers)" Condition=" '$(RuntimeIdentifiers)' != '' " />
+    </ItemGroup>
+    <PropertyGroup>
+      <_AdditionalProperties>
+        _ComputeFilesToPublishForRuntimeIdentifiers=true
+        ;SelfContained=true
+        ;AppendRuntimeIdentifierToOutputPath=true
+        ;ResolveAssemblyReferencesFindRelatedSatellites=false
+        ;SkipCompilerExecution=true
+        ;_OuterIntermediateAssembly=@(IntermediateAssembly)
+        ;_OuterOutputPath=$(OutputPath)
+        ;_OuterIntermediateOutputPath=$(IntermediateOutputPath)
+        ;_OuterCustomViewMapFile=$(_CustomViewMapFile)
+      </_AdditionalProperties>
+      <_AndroidBuildRuntimeIdentifiersInParallel Condition=" '$(_AndroidBuildRuntimeIdentifiersInParallel)' == '' ">true</_AndroidBuildRuntimeIdentifiersInParallel>
+    </PropertyGroup>
+    <ItemGroup>
+      <_ProjectToBuild Include="$(MSBuildProjectFile)" AdditionalProperties="RuntimeIdentifier=%(_RIDs.Identity);$(_AdditionalProperties)" />
+    </ItemGroup>
+    <MSBuild
+        Projects="@(_ProjectToBuild)"
+        BuildInParallel="$(_AndroidBuildRuntimeIdentifiersInParallel)"
+        Targets="_ComputeFilesToPublishForRuntimeIdentifiers">
+      <Output TaskParameter="TargetOutputs" ItemName="ResolvedFileToPublish" />
+    </MSBuild>
+    <!-- Properties produced by the inner build in Microsoft.Android.Sdk.ILLink.targets -->
+    <PropertyGroup>
+      <_InnerIntermediateOutputPath Condition=" '$(RuntimeIdentifier)' == '' ">$(IntermediateOutputPath)%(_RIDs.Identity)\</_InnerIntermediateOutputPath>
+      <_InnerIntermediateOutputPath Condition=" '$(RuntimeIdentifier)' != '' ">$(IntermediateOutputPath)</_InnerIntermediateOutputPath>
+      <_ProguardProjectConfiguration Condition=" '$(AndroidLinkTool)' != '' ">$(_InnerIntermediateOutputPath)proguard\proguard_project_references.cfg</_ProguardProjectConfiguration>
+      <_AndroidLinkFlag Condition=" '$(RuntimeIdentifier)' == '' " >$(_InnerIntermediateOutputPath)link.flag</_AndroidLinkFlag>
+    </PropertyGroup>
+    <ItemGroup>
+      <_ResolvedAssemblyFiles Include="@(ResolvedFileToPublish)" Condition=" '%(ResolvedFileToPublish.Extension)' == '.dll' " />
+      <_ResolvedSymbolFiles   Include="@(ResolvedFileToPublish)" Condition=" '%(ResolvedFileToPublish.Extension)' == '.pdb' " />
+      <_ResolvedJavaLibraries Include="@(ResolvedFileToPublish)" Condition=" '%(ResolvedFileToPublish.Extension)' == '.jar' " />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ResolvedFileToPublish Remove="@(_ResolvedArchiveDSOStub)" />
+    </ItemGroup>
+
+    <!-- All assemblies must be per-RID, thus no `->Distinct()` on `InputAssemblies` or `ResolvedSymbols` items -->
+    <ProcessAssemblies
+        RuntimeIdentifiers="@(_RIDs)"
+        DesignTimeBuild="$(DesignTimeBuild)"
+        InputAssemblies="@(_ResolvedAssemblyFiles)"
+        InputJavaLibraries="@(_ResolvedJavaLibraries->Distinct())"
+        ResolvedSymbols="@(_ResolvedSymbolFiles)"
+        AndroidIncludeDebugSymbols="$(AndroidIncludeDebugSymbols)"
+        PublishTrimmed="$(PublishTrimmed)">
+      <Output TaskParameter="OutputAssemblies" ItemName="_ProcessedAssemblies" />
+      <Output TaskParameter="OutputJavaLibraries" ItemName="AndroidJavaLibrary" />
+      <Output TaskParameter="ResolvedSymbols"  ItemName="ResolvedSymbols" />
+      <Output TaskParameter="ShrunkAssemblies" ItemName="_ProcessedShrunkAssemblies" />
+    </ProcessAssemblies>
+    <AppendCustomMetadataToItemGroup
+        Inputs="@(_ProcessedAssemblies)"
+        MetaDataItems="@(AndroidCustomMetaDataForReferences)">
+      <Output TaskParameter="Output" ItemName="ResolvedAssemblies" />
+    </AppendCustomMetadataToItemGroup>
+    <AppendCustomMetadataToItemGroup
+        Inputs="@(_ProcessedShrunkAssemblies)"
+        MetaDataItems="@(AndroidCustomMetaDataForReferences)">
+      <Output TaskParameter="Output" ItemName="_ShrunkAssemblies" />
+    </AppendCustomMetadataToItemGroup>
+    <ItemGroup>
+      <ResolvedFrameworkAssemblies
+          Include="@(ResolvedAssemblies)"
+          Condition=" '%(ResolvedAssemblies.FrameworkAssembly)' == 'true' "
+      />
+      <ResolvedUserAssemblies
+          Include="@(ResolvedAssemblies)"
+          Condition=" '%(ResolvedAssemblies.FrameworkAssembly)' != 'true' "
+      />
+    </ItemGroup>
+    <Hash ItemsToHash="@(ResolvedAssemblies)">
+      <Output TaskParameter="HashResult" PropertyName="_ResolvedUserAssembliesHash" />
+    </Hash>
+    <WriteLinesToFile
+        File="$(_ResolvedUserAssembliesHashFile)"
+        Lines="$(_ResolvedUserAssembliesHash)"
+        Overwrite="true"
+        WriteOnlyWhenDifferent="true"
+    />
+    <ItemGroup>
+      <FileWrites Include="$(_ResolvedUserAssembliesHashFile)" />
+    </ItemGroup>
+  </Target>
+
+  <PropertyGroup>
+    <_PrepareAssembliesDependsOnTargets>
+      _ResolveAssemblies;
+      _ResolveSatellitePaths;
+      _CreatePackageWorkspace;
+      _LinkAssemblies;
+    </_PrepareAssembliesDependsOnTargets>
+  </PropertyGroup>
+
+  <Target Name="_PrepareAssemblies"
+      DependsOnTargets="$(_PrepareAssembliesDependsOnTargets)">
+    <ItemGroup Condition=" '$(PublishTrimmed)' != 'true' ">
+      <_ResolvedAssemblies          Include="@(ResolvedAssemblies->'$(MonoAndroidIntermediateAssemblyDir)%(DestinationSubPath)')"          Condition=" '%(DestinationSubPath)' != '' " />
+      <_ResolvedUserAssemblies      Include="@(ResolvedUserAssemblies->'$(MonoAndroidIntermediateAssemblyDir)%(DestinationSubPath)')"      Condition=" '%(DestinationSubPath)' != '' " />
+      <_ResolvedFrameworkAssemblies Include="@(ResolvedFrameworkAssemblies->'$(MonoAndroidIntermediateAssemblyDir)%(DestinationSubPath)')" Condition=" '%(DestinationSubPath)' != '' " />
+      <_ResolvedSymbols             Include="@(ResolvedSymbols->'$(MonoAndroidIntermediateAssemblyDir)%(DestinationSubPath)')"             Condition=" '%(DestinationSubPath)' != '' " />
+      <_ShrunkAssemblies            Include="@(_ResolvedAssemblies)" />
+      <_ShrunkUserAssemblies        Include="@(_ResolvedUserAssemblies)" />
+      <_ShrunkFrameworkAssemblies   Include="@(_ResolvedFrameworkAssemblies)" />
+    </ItemGroup>
+    <ItemGroup Condition=" '$(PublishTrimmed)' == 'true' ">
+      <_ResolvedAssemblies          Include="@(ResolvedAssemblies)" />
+      <_ResolvedUserAssemblies      Include="@(ResolvedUserAssemblies)" />
+      <_ResolvedFrameworkAssemblies Include="@(ResolvedFrameworkAssemblies)" />
+      <_ResolvedSymbols             Include="@(ResolvedSymbols)" />
+      <_ShrunkFrameworkAssemblies
+          Include="@(_ShrunkAssemblies)"
+          Condition=" '%(_ShrunkAssemblies.FrameworkAssembly)' == 'true' "
+      />
+      <_ShrunkUserAssemblies
+          Include="@(_ShrunkAssemblies)"
+          Condition=" '%(_ShrunkAssemblies.FrameworkAssembly)' != 'true' "
+      />
+    </ItemGroup>
+    <ItemGroup>
+      <_ResolvedUserMonoAndroidAssemblies
+          Include="@(_ResolvedUserAssemblies)"
+          Condition=" '%(_ResolvedUserAssemblies.TargetFrameworkIdentifier)' == 'MonoAndroid' Or '%(_ResolvedUserAssemblies.HasMonoAndroidReference)' == 'True' "
+      />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="_IncludeNativeSystemLibraries">
+    <PropertyGroup>
+      <_AndroidIncludeSystemGlobalizationNative Condition=" '$(_AndroidIncludeSystemGlobalizationNative)' == '' ">true</_AndroidIncludeSystemGlobalizationNative>
+      <_AndroidEnableNativeStackTracing Condition=" '$(_AndroidEnableNativeStackTracing)' == ''">false</_AndroidEnableNativeStackTracing>
+    </PropertyGroup>
+    <ItemGroup>
+      <_ResolvedNativeLibraries Include="@(ResolvedFileToPublish)" Condition=" '%(ResolvedFileToPublish.Extension)' == '.so' " />
+    </ItemGroup>
+    <ItemGroup>
+      <_MonoComponent Condition=" '$(AndroidEnableProfiler)' == 'true' " Include="diagnostics_tracing" />
+      <_MonoComponent Condition=" '$(AndroidUseInterpreter)' == 'true' " Include="hot_reload" />
+      <_MonoComponent Condition=" '$(AndroidIncludeDebugSymbols)' == 'true' " Include="debugger" />
+      <_MonoComponent Condition=" '$(_AndroidExcludeMarshalIlgenComponent)' != 'true' " Include="marshal-ilgen" />
+      <!-- Filename without extension -->
+      <_ExcludedNativeLibraries Condition=" '$(_AndroidIncludeSystemGlobalizationNative)' != 'true' " Include="libSystem.Globalization.Native" />
+      <_ExcludedNativeLibraries Condition=" '$(_AndroidEnableNativeStackTracing)' != 'true' " Include="libxamarin-native-tracing" />
+    </ItemGroup>
+    <ProcessNativeLibraries
+        InputLibraries="@(_ResolvedNativeLibraries)"
+        ExcludedLibraries="@(_ExcludedNativeLibraries)"
+        Components="@(_MonoComponent->Distinct())"
+        IncludeDebugSymbols="$(AndroidIncludeDebugSymbols)">
+      <Output TaskParameter="OutputLibraries" ItemName="FrameworkNativeLibrary" />
+    </ProcessNativeLibraries>
+  </Target>
+
+</Project>

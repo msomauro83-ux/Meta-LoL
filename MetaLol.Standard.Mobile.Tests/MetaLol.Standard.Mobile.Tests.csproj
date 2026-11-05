@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+    <PackageReference Include="xunit" Version="2.9.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.4"><PrivateAssets>all</PrivateAssets></PackageReference>
+    <Compile Include="..\MetaLol.Standard\Champion.cs" Link="Core\Champion.cs" />
+    <Compile Include="..\MetaLol.Standard\DraftAnalyzer.cs" Link="Core\DraftAnalyzer.cs" />
+    <Compile Include="..\MetaLol.Standard\RoleCatalog.cs" Link="Core\RoleCatalog.cs" />
+    <Compile Include="..\MetaLol.Standard\EditionProfile.cs" Link="Core\EditionProfile.cs" />
+    <Compile Include="..\MetaLol.Standard.Mobile\ManualDraft.cs" Link="Mobile\ManualDraft.cs" />
+    <Compile Include="..\MetaLol.Standard.Mobile\CatalogParser.cs" Link="Mobile\CatalogParser.cs" />
+    <None Include="..\MetaLol.Standard.Mobile\Resources\Raw\champions-es_ES.json" Link="champions-es_ES.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

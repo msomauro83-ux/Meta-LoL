@@ -1,0 +1,32 @@
+<FileList TargetFrameworkIdentifier=".NETStandard" TargetFrameworkVersion="2.0" FrameworkName="Microsoft.Android.Runtimes" Name=".NET 10.0 - Microsoft.Android.Runtimes">
+  <File Type="Native" Path="runtimes/android-x64/native/crtbegin_so.o" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-x64/native/crtend_so.o" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-x64/native/libarchive-dso-stub.so" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-x64/native/libc++_static.a" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-x64/native/libc++abi.a" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-x64/native/libc.so" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-x64/native/libclang_rt.builtins-x86_64-android.a" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-x64/native/libdl.so" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-x64/native/liblog.so" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-x64/native/libm.so" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-x64/native/libnet-android.debug-static-debug.a" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-x64/native/libnet-android.debug.so" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-x64/native/libnet-android.release-static-release.a" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-x64/native/libnet-android.release.so" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-x64/native/libpinvoke-override-dynamic-debug.a" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-x64/native/libpinvoke-override-dynamic-release.a" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-x64/native/libruntime-base-common-debug.a" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-x64/native/libruntime-base-common-release.a" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-x64/native/libruntime-base-debug.a" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-x64/native/libruntime-base-release.a" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-x64/native/libunwind.a" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-x64/native/libunwind_xamarin-debug.a" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-x64/native/libunwind_xamarin-release.a" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-x64/native/libxa-java-interop-release.a" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-x64/native/libxa-lz4-release.a" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-x64/native/libxa-shared-bits-debug.a" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-x64/native/libxa-shared-bits-release.a" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-x64/native/libxamarin-startup-debug.a" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-x64/native/libxamarin-startup-release.a" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-x64/native/libz.so" FileVersion="0.0.0.0" Profile="Android" />
+</FileList>

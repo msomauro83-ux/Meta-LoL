@@ -1,0 +1,114 @@
+{
+  "runtimeTarget": {
+    "name": ".NETStandard,Version=v2.0/android-x64",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETStandard,Version=v2.0": {},
+    ".NETStandard,Version=v2.0/android-x64": {
+      "Microsoft.Android.Runtime.CoreCLR.36.android-x64/1.0.0": {
+        "native": {
+          "libnet-android.debug-static-debug.a": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libnet-android.debug.so": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libnet-android.release-static-release.a": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libnet-android.release.so": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libpinvoke-override-dynamic-debug.a": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libpinvoke-override-dynamic-release.a": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libruntime-base-debug.a": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libruntime-base-release.a": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libruntime-base-common-debug.a": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libruntime-base-common-release.a": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libunwind_xamarin-debug.a": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libunwind_xamarin-release.a": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libxa-java-interop-release.a": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libxa-lz4-release.a": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libxa-shared-bits-debug.a": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libxa-shared-bits-release.a": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libxamarin-startup-debug.a": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libxamarin-startup-release.a": {
+            "fileVersion": "0.0.0.0"
+          },
+          "crtbegin_so.o": {
+            "fileVersion": "0.0.0.0"
+          },
+          "crtend_so.o": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libc++_static.a": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libc++abi.a": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libclang_rt.builtins-x86_64-android.a": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libunwind.a": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libc.so": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libdl.so": {
+            "fileVersion": "0.0.0.0"
+          },
+          "liblog.so": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libm.so": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libz.so": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libarchive-dso-stub.so": {
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Microsoft.Android.Runtime.CoreCLR.36.android-x64/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "",
+      "path": "microsoft.android.runtime.coreclr.36.android-x64/1.0.0"
+    }
+  }
+}

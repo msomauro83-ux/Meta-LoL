@@ -1,0 +1,170 @@
+﻿[
+    {
+        "Path":  "C:\\Users\\Usuario\\Documents\\Meta LoL\\MetaLol.Desktop\\App.xaml",
+        "Hash":  "0CED61C48F8F9B8C7273E4BBFDA4B73EA842B10D0BA50FD3A3F8BA03B3EE1F3F"
+    },
+    {
+        "Path":  "C:\\Users\\Usuario\\Documents\\Meta LoL\\MetaLol.Desktop\\App.xaml.cs",
+        "Hash":  "3560AC52BC96E5A29A829F9539FCC89CDE669B4FFB97D3B92932D39B414FF865"
+    },
+    {
+        "Path":  "C:\\Users\\Usuario\\Documents\\Meta LoL\\MetaLol.Desktop\\AppDataPaths.cs",
+        "Hash":  "5CF817AC1DCE7A0056FDA0B68AA07ECDE53570D8C8102C3623655AB9302EAA9A"
+    },
+    {
+        "Path":  "C:\\Users\\Usuario\\Documents\\Meta LoL\\MetaLol.Desktop\\Champion.cs",
+        "Hash":  "B4A1EF7D905AE9DD797744D0C78758B72EF7ECCA72EB725DDC3BB6BE3815FF12"
+    },
+    {
+        "Path":  "C:\\Users\\Usuario\\Documents\\Meta LoL\\MetaLol.Desktop\\ChampionDetailsWindow.xaml",
+        "Hash":  "DCE4D12FF668180045862F4BA334BCC6A166B7B23D4F7084FB86AB15FC60ABB6"
+    },
+    {
+        "Path":  "C:\\Users\\Usuario\\Documents\\Meta LoL\\MetaLol.Desktop\\ChampionDetailsWindow.xaml.cs",
+        "Hash":  "146D61EB50414E99AA8A487C858CF87EBF480FD13563482F23880ED24EFEE2D8"
+    },
+    {
+        "Path":  "C:\\Users\\Usuario\\Documents\\Meta LoL\\MetaLol.Desktop\\DatabaseService.cs",
+        "Hash":  "26E09C53F6E820599E90B1FAFFE21B9A04BCE8AE289C233D836AB95C3897A9C7"
+    },
+    {
+        "Path":  "C:\\Users\\Usuario\\Documents\\Meta LoL\\MetaLol.Desktop\\DataDragonService.cs",
+        "Hash":  "8E91F3DF8057B479A4DE6F1CBEC779698118CAF91274C04C95E9EDD6357C70E3"
+    },
+    {
+        "Path":  "C:\\Users\\Usuario\\Documents\\Meta LoL\\MetaLol.Desktop\\DataImportWindow.xaml",
+        "Hash":  "2B35A032D78155F4DF8EE6DEDC0D594DEB7ADE386E0A47185B16703FF8207509"
+    },
+    {
+        "Path":  "C:\\Users\\Usuario\\Documents\\Meta LoL\\MetaLol.Desktop\\DataImportWindow.xaml.cs",
+        "Hash":  "32DE128CC2B0F401DAD91CE87BEF491DDE58899B15E64F68EAC58867E7D3AD61"
+    },
+    {
+        "Path":  "C:\\Users\\Usuario\\Documents\\Meta LoL\\MetaLol.Desktop\\DesktopWindowBehavior.cs",
+        "Hash":  "A3F0912DB973353E4A8A5EC5B620BF28826D0B9163CFCFE066AAA3387EC59AFD"
+    },
+    {
+        "Path":  "C:\\Users\\Usuario\\Documents\\Meta LoL\\MetaLol.Desktop\\DraftAnalyzer.cs",
+        "Hash":  "D444A1838412B964E1D6EA1A3310F6C6944E54851D8991A48995D8F0F35B885A"
+    },
+    {
+        "Path":  "C:\\Users\\Usuario\\Documents\\Meta LoL\\MetaLol.Desktop\\GameAssetsService.cs",
+        "Hash":  "960D6B1F38BBC1607657A448B9DDBCEF2A55B9DA0222FCA861B4EEC4C11EED06"
+    },
+    {
+        "Path":  "C:\\Users\\Usuario\\Documents\\Meta LoL\\MetaLol.Desktop\\JungleChampionPool.cs",
+        "Hash":  "123D3F269F000881AA0435CA24088F585A2A3B7B940715EB8102DB2ECDCFF6C0"
+    },
+    {
+        "Path":  "C:\\Users\\Usuario\\Documents\\Meta LoL\\MetaLol.Desktop\\LeagueClientService.cs",
+        "Hash":  "160BBAF2F876BF01144B0D335C82B6B7773B769222CFB0274A6136DD5A1A1CD4"
+    },
+    {
+        "Path":  "C:\\Users\\Usuario\\Documents\\Meta LoL\\MetaLol.Desktop\\LocalPlayerDataParser.cs",
+        "Hash":  "910A4803E4745D000D035A857809BE879FD405D83C23CB1A4494B26C0735B86A"
+    },
+    {
+        "Path":  "C:\\Users\\Usuario\\Documents\\Meta LoL\\MetaLol.Desktop\\MainWindow.xaml",
+        "Hash":  "D1F31D148217D18787256861EF9A80CA65FA485CA6DBFB41350C35D4FD88CBA7"
+    },
+    {
+        "Path":  "C:\\Users\\Usuario\\Documents\\Meta LoL\\MetaLol.Desktop\\MainWindow.xaml.cs",
+        "Hash":  "479F719201E475D84EB1152E6F158FB2DE46D8D2F14D68EE6F616304F56C355E"
+    },
+    {
+        "Path":  "C:\\Users\\Usuario\\Documents\\Meta LoL\\MetaLol.Desktop\\MetaLol.Desktop.csproj",
+        "Hash":  "231B071A24F8D5C7E8978BB671961865F7C14B1F4D20BFA1D33D2977AEBCB9EE"
+    },
+    {
+        "Path":  "C:\\Users\\Usuario\\Documents\\Meta LoL\\MetaLol.Desktop\\RiotMatchImporter.cs",
+        "Hash":  "75B0B1808026A0A851161F04B2438C2FD0E30003A7A4DDBECCBAECFE1E75EB8A"
+    },
+    {
+        "Path":  "C:\\Users\\Usuario\\Documents\\Meta LoL\\MetaLol.Desktop\\RoleCatalog.cs",
+        "Hash":  "98AA76702BD9608B48073AF686C422C1877588925DC7837E2FF49D7ACB95EFAE"
+    },
+    {
+        "Path":  "C:\\Users\\Usuario\\Documents\\Meta LoL\\MetaLol.Nyfu\\App.xaml",
+        "Hash":  "72C54A011B29376D2865A800F58D8768FE677902AC53836787FD6978205B8B3C"
+    },
+    {
+        "Path":  "C:\\Users\\Usuario\\Documents\\Meta LoL\\MetaLol.Nyfu\\App.xaml.cs",
+        "Hash":  "3560AC52BC96E5A29A829F9539FCC89CDE669B4FFB97D3B92932D39B414FF865"
+    },
+    {
+        "Path":  "C:\\Users\\Usuario\\Documents\\Meta LoL\\MetaLol.Nyfu\\AppDataPaths.cs",
+        "Hash":  "63AA7AD8702834B8B96AB2878994267B8233A48854A7D0466B84AD816DE01213"
+    },
+    {
+        "Path":  "C:\\Users\\Usuario\\Documents\\Meta LoL\\MetaLol.Nyfu\\Champion.cs",
+        "Hash":  "234E503F4C75EDFCFF2E1B398A3B19C363C51844EB593344C29D20669D1357B8"
+    },
+    {
+        "Path":  "C:\\Users\\Usuario\\Documents\\Meta LoL\\MetaLol.Nyfu\\ChampionDetailsWindow.xaml",
+        "Hash":  "DCE4D12FF668180045862F4BA334BCC6A166B7B23D4F7084FB86AB15FC60ABB6"
+    },
+    {
+        "Path":  "C:\\Users\\Usuario\\Documents\\Meta LoL\\MetaLol.Nyfu\\ChampionDetailsWindow.xaml.cs",
+        "Hash":  "146D61EB50414E99AA8A487C858CF87EBF480FD13563482F23880ED24EFEE2D8"
+    },
+    {
+        "Path":  "C:\\Users\\Usuario\\Documents\\Meta LoL\\MetaLol.Nyfu\\DatabaseService.cs",
+        "Hash":  "76939A6749100035FCBD955B6C5DE03B939F7AF2AB26C1F5D6AA2520C6F0BEFB"
+    },
+    {
+        "Path":  "C:\\Users\\Usuario\\Documents\\Meta LoL\\MetaLol.Nyfu\\DataDragonService.cs",
+        "Hash":  "8E91F3DF8057B479A4DE6F1CBEC779698118CAF91274C04C95E9EDD6357C70E3"
+    },
+    {
+        "Path":  "C:\\Users\\Usuario\\Documents\\Meta LoL\\MetaLol.Nyfu\\DataImportWindow.xaml",
+        "Hash":  "06679FD700E3A44C2912056F8FAB5D409EB987C30834FB57791C7557F9E836E9"
+    },
+    {
+        "Path":  "C:\\Users\\Usuario\\Documents\\Meta LoL\\MetaLol.Nyfu\\DataImportWindow.xaml.cs",
+        "Hash":  "32DE128CC2B0F401DAD91CE87BEF491DDE58899B15E64F68EAC58867E7D3AD61"
+    },
+    {
+        "Path":  "C:\\Users\\Usuario\\Documents\\Meta LoL\\MetaLol.Nyfu\\DesktopWindowBehavior.cs",
+        "Hash":  "A3F0912DB973353E4A8A5EC5B620BF28826D0B9163CFCFE066AAA3387EC59AFD"
+    },
+    {
+        "Path":  "C:\\Users\\Usuario\\Documents\\Meta LoL\\MetaLol.Nyfu\\DraftAnalyzer.cs",
+        "Hash":  "D65EE7D0742E4B0BC75B33641295D03B16E5A35068DFDA06E48A84B8C3D5F44B"
+    },
+    {
+        "Path":  "C:\\Users\\Usuario\\Documents\\Meta LoL\\MetaLol.Nyfu\\EditionProfile.cs",
+        "Hash":  "9D819976E85B5F4FEE5DB65D897BD34D637DEF12AA853A4965492034D951692C"
+    },
+    {
+        "Path":  "C:\\Users\\Usuario\\Documents\\Meta LoL\\MetaLol.Nyfu\\GameAssetsService.cs",
+        "Hash":  "960D6B1F38BBC1607657A448B9DDBCEF2A55B9DA0222FCA861B4EEC4C11EED06"
+    },
+    {
+        "Path":  "C:\\Users\\Usuario\\Documents\\Meta LoL\\MetaLol.Nyfu\\LeagueClientService.cs",
+        "Hash":  "491DEF71471108DE4C660608540FF58517C7F8B323B5693F9F63C48ABC5EE695"
+    },
+    {
+        "Path":  "C:\\Users\\Usuario\\Documents\\Meta LoL\\MetaLol.Nyfu\\LocalPlayerDataParser.cs",
+        "Hash":  "84DD2E41F55C0254F9894322B5CF126E720AC8AF2C42F956BF8550DF161687EA"
+    },
+    {
+        "Path":  "C:\\Users\\Usuario\\Documents\\Meta LoL\\MetaLol.Nyfu\\MainWindow.xaml",
+        "Hash":  "DA56E1527BC51599D2DC1604076687C737147781F5F1CF818398F163EEFDB3D9"
+    },
+    {
+        "Path":  "C:\\Users\\Usuario\\Documents\\Meta LoL\\MetaLol.Nyfu\\MainWindow.xaml.cs",
+        "Hash":  "03A5300E5F22EF4A8634B4F94DAFFFAD832C6E7DF7C74B9B9C9DAED35B43EBB8"
+    },
+    {
+        "Path":  "C:\\Users\\Usuario\\Documents\\Meta LoL\\MetaLol.Nyfu\\MetaLol.Nyfu.csproj",
+        "Hash":  "7EA1815E30490BC374809F3B8DB87D861E8588B8D7F72D91B5053F22198AFA7A"
+    },
+    {
+        "Path":  "C:\\Users\\Usuario\\Documents\\Meta LoL\\MetaLol.Nyfu\\RiotMatchImporter.cs",
+        "Hash":  "75B0B1808026A0A851161F04B2438C2FD0E30003A7A4DDBECCBAECFE1E75EB8A"
+    },
+    {
+        "Path":  "C:\\Users\\Usuario\\Documents\\Meta LoL\\MetaLol.Nyfu\\RoleCatalog.cs",
+        "Hash":  "A42F07B1ADED48EA5C4E58922326E17394FD9F93A1DE57745FD4F5959B940D94"
+    }
+]

@@ -1,0 +1,44 @@
+{
+  "runtimeTarget": {
+    "name": ".NETStandard,Version=v2.0/android",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETStandard,Version=v2.0": {},
+    ".NETStandard,Version=v2.0/android": {
+      "Microsoft.Android.Runtime.36.android/1.0.0": {
+        "runtime": {
+          "Java.Interop.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.0.67"
+          },
+          "Mono.Android.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          },
+          "Mono.Android.Runtime.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          },
+          "Mono.Android.Export.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          },
+          "System.IO.Hashing.dll": {
+            "assemblyVersion": "10.0.0.12",
+            "fileVersion": "10.0.1226.42308"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Microsoft.Android.Runtime.36.android/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "",
+      "path": "microsoft.android.runtime.36.android/1.0.0"
+    }
+  }
+}

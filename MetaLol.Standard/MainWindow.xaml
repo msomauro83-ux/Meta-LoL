@@ -1,0 +1,352 @@
+<Window x:Class="MetaLol.Desktop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
+        xmlns:local="clr-namespace:MetaLol.Desktop"
+        Title="Meta LoL Estándar · Multilínea"
+        Height="860" Width="1300" MinHeight="420" MinWidth="640"
+        local:DesktopWindowBehavior.Enabled="True"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None" ResizeMode="CanResize" Background="{StaticResource Background}">
+    <shell:WindowChrome.WindowChrome>
+        <shell:WindowChrome CaptionHeight="48" ResizeBorderThickness="7" GlassFrameThickness="0" CornerRadius="0" />
+    </shell:WindowChrome.WindowChrome>
+
+    <Grid x:Name="ResponsiveRoot" Background="{StaticResource Background}" SizeChanged="ResponsiveRoot_SizeChanged">
+        <!-- Ambient electro lighting -->
+        <Ellipse Width="680" Height="680" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-390,-250,0"
+                 IsHitTestVisible="False" Opacity="0.42">
+            <Ellipse.Fill>
+                <RadialGradientBrush>
+                    <GradientStop Color="#382A78FF" Offset="0" />
+                    <GradientStop Color="#00131A2B" Offset="1" />
+                </RadialGradientBrush>
+            </Ellipse.Fill>
+        </Ellipse>
+        <Ellipse Width="540" Height="540" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="-330,0,0,-350"
+                 IsHitTestVisible="False" Opacity="0.32">
+            <Ellipse.Fill>
+                <RadialGradientBrush>
+                    <GradientStop Color="#3249E6FF" Offset="0" />
+                    <GradientStop Color="#00070B14" Offset="1" />
+                </RadialGradientBrush>
+            </Ellipse.Fill>
+        </Ellipse>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="48" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!-- Custom title bar -->
+            <Border Grid.Row="0" BorderBrush="#16243A" BorderThickness="0,0,0,1" Background="#D9070B14">
+                <Grid Margin="22,0,12,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Border Width="30" Height="30" CornerRadius="6" BorderBrush="{StaticResource Accent}" BorderThickness="1"
+                                Background="#162938" Effect="{StaticResource CyanGlow}">
+                            <TextBlock Text="M" Foreground="{StaticResource Accent}" FontFamily="Consolas" FontWeight="Bold"
+                                       FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <TextBlock Text="META//LOL" FontFamily="Consolas" FontWeight="Bold" FontSize="14"
+                                   VerticalAlignment="Center" Margin="11,0,0,0" />
+                        <Border x:Name="EngineBadge" Background="#132337" BorderBrush="#294560" BorderThickness="1" CornerRadius="10"
+                                Padding="9,3" Margin="13,0,0,0">
+                            <TextBlock Text="MULTILÍNEA" Style="{StaticResource EyebrowText}" FontSize="9" />
+                        </Border>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,18,0">
+                        <Ellipse Width="6" Height="6" Fill="#71F5B2" Margin="0,0,7,0">
+                            <Ellipse.Effect><DropShadowEffect Color="#71F5B2" BlurRadius="10" ShadowDepth="0" /></Ellipse.Effect>
+                        </Ellipse>
+                        <TextBlock x:Name="SystemStatusText" Text="INITIALIZING" Style="{StaticResource EyebrowText}" Foreground="#71F5B2" FontSize="9" MaxWidth="120" TextTrimming="CharacterEllipsis" />
+                        <Button Content="IMPORT DATA" Style="{StaticResource SecondaryButton}" Padding="10,5" Margin="14,0,0,0"
+                                FontFamily="Consolas" FontSize="9" Click="ImportData_Click" shell:WindowChrome.IsHitTestVisibleInChrome="True" />
+                    </StackPanel>
+
+                    <StackPanel x:Name="WindowControls" Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" shell:WindowChrome.IsHitTestVisibleInChrome="True">
+                        <Button Style="{StaticResource WindowButton}" Content="―" Click="Minimize_Click" FontSize="14" />
+                        <Button Style="{StaticResource WindowButton}" Content="□" Click="Maximize_Click" FontSize="13" />
+                        <Button Style="{StaticResource WindowButton}" Content="×" Click="Close_Click" FontSize="20" />
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- Hero -->
+            <Grid x:Name="HeroGrid" Grid.Row="1" Margin="30,16,30,16">
+                <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel x:Name="HeroCopy" VerticalAlignment="Center">
+                    <TextBlock x:Name="HeroEyebrow" Text="DRAFT INTELLIGENCE / ESTÁNDAR" Style="{StaticResource EyebrowText}" />
+                    <TextBlock x:Name="HeroTitle" Text="Tu siguiente pick, con un plan." FontSize="30" FontWeight="SemiBold" TextWrapping="Wrap" Margin="0,5,0,0" />
+                    <TextBlock x:Name="HeroSubtitle" Text="Todas las líneas y el catálogo completo. Cinco opciones por score para cada draft." TextWrapping="Wrap"
+                               Foreground="{StaticResource TextMuted}" FontSize="13" Margin="0,5,0,0" />
+                </StackPanel>
+                <StackPanel x:Name="FilterPanel" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <StackPanel Width="124" Margin="0,0,9,0">
+                        <TextBlock Text="TU LÍNEA" Style="{StaticResource EyebrowText}" Foreground="{StaticResource TextMuted}" FontSize="9" Margin="1,0,0,4" />
+                        <ComboBox x:Name="PlayerRoleBox" SelectionChanged="PlayerRole_SelectionChanged" ToolTip="Automática si el cliente revela tu rol; manual fuera del draft o si falta esa información." />
+                    </StackPanel>
+                    <StackPanel Width="112">
+                        <TextBlock Text="REGIÓN" Style="{StaticResource EyebrowText}" Foreground="{StaticResource TextMuted}" FontSize="9" Margin="1,0,0,4" />
+                        <ComboBox x:Name="RegionBox" />
+                    </StackPanel>
+                    <StackPanel Width="138" Margin="9,0,0,0">
+                        <TextBlock Text="ELO" Style="{StaticResource EyebrowText}" Foreground="{StaticResource TextMuted}" FontSize="9" Margin="1,0,0,4" />
+                        <ComboBox x:Name="RankBox" />
+                    </StackPanel>
+                    <Border Background="#101D2F" BorderBrush="{StaticResource Border}" BorderThickness="1" CornerRadius="8" Padding="14,8" Margin="9,13,0,0">
+                        <StackPanel>
+                            <TextBlock Text="PATCH" Style="{StaticResource EyebrowText}" Foreground="{StaticResource TextMuted}" FontSize="9" />
+                            <TextBlock x:Name="PatchText" Text="LOADING" FontFamily="Consolas" FontSize="12" Margin="0,3,0,0" />
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Grid>
+
+            <!-- Main workspace -->
+            <ScrollViewer x:Name="WorkspaceScroll" Grid.Row="2" Margin="30,0,30,12"
+                          VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Disabled"
+                          HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+            <Grid x:Name="WorkspaceGrid">
+                <Grid.RowDefinitions><RowDefinition x:Name="DraftRow" Height="*"/><RowDefinition x:Name="ResultsRow" Height="Auto"/></Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition x:Name="DraftColumn" Width="350" />
+                    <ColumnDefinition x:Name="WorkspaceGap" Width="18" />
+                    <ColumnDefinition x:Name="ResultsColumn" Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Left command panel -->
+                <ScrollViewer x:Name="DraftScroll" Grid.Column="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="14" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Border Style="{StaticResource PanelCard}" Padding="20,18">
+                        <StackPanel>
+                            <Grid Margin="0,0,0,15">
+                                <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="DRAFT MATRIX" Style="{StaticResource EyebrowText}" />
+                                    <TextBlock x:Name="DraftPanelTitle" Text="Composición rival" FontSize="19" FontWeight="SemiBold" Margin="0,3,0,0" />
+                                </StackPanel>
+                                <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Margin="0,8,0,0" Orientation="Horizontal" VerticalAlignment="Center">
+                                    <Button x:Name="EnemyModeButton" Content="RIVAL" Style="{StaticResource PrimaryButton}" Padding="10,6" Click="EnemyMode_Click" />
+                                    <Button x:Name="AllyModeButton" Content="ALIADOS" Style="{StaticResource SecondaryButton}" Padding="10,6" Margin="6,0,0,0" Click="AllyMode_Click" />
+                                </StackPanel>
+                            </Grid>
+                            <TextBlock x:Name="RoleStatusText" Text="TU LÍNEA: Mid · MANUAL" Foreground="#A3DFC7" FontWeight="SemiBold" FontSize="12" TextWrapping="Wrap" Margin="0,0,0,8" />
+                            <TextBlock x:Name="ClientStatusText" Text="LCU: BUSCANDO CLIENTE · MODO MANUAL"
+                                       Style="{StaticResource EyebrowText}" Foreground="{StaticResource TextMuted}"
+                                       FontSize="9" TextTrimming="CharacterEllipsis" ToolTip="Estado de conexión con el cliente local de League of Legends."
+                                       Margin="0,-7,0,11" />
+
+                            <TextBlock x:Name="LiveEnemyText" Foreground="#F6B4AC" FontSize="11" TextWrapping="Wrap" Margin="0,0,0,6" />
+                            <TextBlock x:Name="LiveAllyText" Foreground="#A3DFC7" FontSize="11" TextWrapping="Wrap" Margin="0,0,0,6" />
+                            <StackPanel x:Name="DetectedOpponentPanel" Visibility="Collapsed" Margin="0,0,0,10">
+                                <TextBlock x:Name="DetectedOpponentLabel" Text="RIVAL DE TU LÍNEA · confirma si falta su línea" FontSize="10" Foreground="{StaticResource TextMuted}" TextWrapping="Wrap" Margin="0,0,0,4" />
+                                <ComboBox x:Name="DetectedOpponentBox" DisplayMemberPath="Name" SelectionChanged="DetectedOpponent_SelectionChanged" />
+                            </StackPanel>
+                            <StackPanel x:Name="EnemyInputs">
+                                <Grid Margin="0,0,0,10">
+                                    <Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                                    <TextBlock Text="TOP" Style="{StaticResource EyebrowText}" Foreground="{StaticResource TextMuted}" VerticalAlignment="Center" />
+                                    <ComboBox Grid.Column="1" x:Name="TopBox" DisplayMemberPath="Name" />
+                                </Grid>
+                                <Grid Margin="0,0,0,10">
+                                    <Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                                    <TextBlock Text="JGL" Style="{StaticResource EyebrowText}" Foreground="{StaticResource TextMuted}" VerticalAlignment="Center" />
+                                    <ComboBox Grid.Column="1" x:Name="JungleBox" DisplayMemberPath="Name" />
+                                </Grid>
+                                <Grid Margin="0,0,0,10">
+                                    <Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                                    <TextBlock Text="MID" Style="{StaticResource EyebrowText}" Foreground="{StaticResource TextMuted}" VerticalAlignment="Center" />
+                                    <ComboBox Grid.Column="1" x:Name="MidBox" DisplayMemberPath="Name" />
+                                </Grid>
+                                <Grid Margin="0,0,0,10">
+                                    <Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                                    <TextBlock Text="ADC" Style="{StaticResource EyebrowText}" Foreground="{StaticResource TextMuted}" VerticalAlignment="Center" />
+                                    <ComboBox Grid.Column="1" x:Name="AdcBox" DisplayMemberPath="Name" />
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                                    <TextBlock Text="SUP" Style="{StaticResource EyebrowText}" Foreground="{StaticResource TextMuted}" VerticalAlignment="Center" />
+                                    <ComboBox Grid.Column="1" x:Name="SupportBox" DisplayMemberPath="Name" />
+                                </Grid>
+                            </StackPanel>
+
+                            <StackPanel x:Name="AllyInputs" Visibility="Collapsed">
+                                <TextBlock Text="Tu línea queda reservada para las recomendaciones. Elige los otros cuatro aliados." TextWrapping="Wrap" Foreground="{StaticResource TextMuted}" FontSize="11" Margin="0,0,0,10" />
+                                <Grid Margin="0,0,0,10"><Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions><TextBlock Text="TOP" Style="{StaticResource EyebrowText}" Foreground="{StaticResource TextMuted}" VerticalAlignment="Center"/><ComboBox Grid.Column="1" x:Name="AllyTopBox" DisplayMemberPath="Name"/></Grid>
+                                <Grid Margin="0,0,0,10"><Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions><TextBlock Text="JGL" Style="{StaticResource EyebrowText}" Foreground="{StaticResource TextMuted}" VerticalAlignment="Center"/><ComboBox Grid.Column="1" x:Name="AllyJungleBox" DisplayMemberPath="Name"/></Grid>
+                                <Grid Margin="0,0,0,10"><Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions><TextBlock Text="MID" Style="{StaticResource EyebrowText}" Foreground="{StaticResource TextMuted}" VerticalAlignment="Center"/><ComboBox Grid.Column="1" x:Name="AllyMidBox" DisplayMemberPath="Name"/></Grid>
+                                <Grid Margin="0,0,0,10"><Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions><TextBlock Text="ADC" Style="{StaticResource EyebrowText}" Foreground="{StaticResource TextMuted}" VerticalAlignment="Center"/><ComboBox Grid.Column="1" x:Name="AllyAdcBox" DisplayMemberPath="Name"/></Grid>
+                                <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions><TextBlock Text="SUP" Style="{StaticResource EyebrowText}" Foreground="{StaticResource TextMuted}" VerticalAlignment="Center"/><ComboBox Grid.Column="1" x:Name="AllySupportBox" DisplayMemberPath="Name"/></Grid>
+                            </StackPanel>
+
+                            <Grid Margin="0,17,0,0">
+                                <Button x:Name="ClearButton" Content="LIMPIAR DRAFT" Style="{StaticResource SecondaryButton}" Click="Clear_Click" IsEnabled="False" />
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Grid.Row="2" Style="{StaticResource PanelCard}" Padding="19,17">
+                        <Grid>
+                            <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+                            <TextBlock Text="TACTICAL READOUT" Style="{StaticResource EyebrowText}" />
+                            <TextBlock Grid.Row="1" x:Name="CompositionSummary"
+                                       Text="Selecciona un rival para iniciar el análisis."
+                                       TextWrapping="Wrap" FontSize="13" LineHeight="19" Margin="0,8,0,11" />
+                            <StackPanel Grid.Row="2">
+                                <TextBlock Text="QUÉ PRIORIZAR" Style="{StaticResource EyebrowText}" Foreground="{StaticResource TextMuted}" Margin="0,0,0,4" />
+                                <ItemsControl x:Name="PrioritiesList">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid Margin="0,4,0,0">
+                                                <Grid.ColumnDefinitions><ColumnDefinition Width="14"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                                                <Ellipse Width="5" Height="5" Fill="{StaticResource Accent}" VerticalAlignment="Top" Margin="0,6,0,0" />
+                                                <TextBlock Grid.Column="1" Text="{Binding}" Foreground="{StaticResource TextMuted}"
+                                                           TextWrapping="Wrap" FontSize="12" LineHeight="17" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </Grid>
+
+                </ScrollViewer>
+
+                <!-- Primary recommendation surface -->
+                <Border x:Name="RecommendationsPanel" Grid.Column="2" Style="{StaticResource PanelCard}" Padding="18,16">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid>
+                            <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                            <StackPanel Grid.ColumnSpan="2">
+                                <TextBlock Text="OPTIMAL RESPONSE" Style="{StaticResource EyebrowText}" />
+                                <TextBlock x:Name="RecommendationTitle" Text="Mejores 5 · Mid" FontSize="22" FontWeight="SemiBold" Margin="0,3,0,0" TextWrapping="Wrap" />
+                                <TextBlock x:Name="MatchupStatusText" Text="Meta LoL Estándar · Mid · rival por confirmar" Foreground="#A3DFC7" FontWeight="SemiBold" FontSize="12" Margin="0,5,0,0" TextWrapping="Wrap" />
+                                <TextBlock Text="Catálogo completo · top 5 por score · historial por cuenta y rol."
+                                           Foreground="{StaticResource TextMuted}" FontSize="12" Margin="0,5,0,0" TextWrapping="Wrap" />
+                                <TextBlock x:Name="PersonalStatusText" Text="HISTORIAL: pendiente" Foreground="{StaticResource Accent}" FontSize="11" TextWrapping="Wrap" Margin="0,5,0,0" />
+                            </StackPanel>
+                            <Border Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="0,7,0,0" Background="#10273A" BorderBrush="#2D5D75" BorderThickness="1"
+                                    CornerRadius="8" Padding="10,5" VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal">
+                                    <Ellipse Width="6" Height="6" Fill="{StaticResource Accent}" Margin="0,0,7,0" VerticalAlignment="Center" />
+                                    <TextBlock x:Name="RecommendationCount" Text="WAITING FOR INPUT" FontFamily="Consolas"
+                                               FontSize="10" Foreground="{StaticResource Accent}" TextWrapping="Wrap" />
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+
+                        <Grid Grid.Row="1" Margin="0,12,0,9">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" MinWidth="150"/><ColumnDefinition Width="76"/><ColumnDefinition Width="3*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="CAMPEÓN" Style="{StaticResource EyebrowText}" Foreground="{StaticResource TextMuted}" />
+                            <TextBlock Grid.Column="1" Text="/ 100" Style="{StaticResource EyebrowText}" Foreground="{StaticResource TextMuted}" />
+                            <TextBlock Grid.Column="2" Text="PERFIL / TÁCTICA" Style="{StaticResource EyebrowText}" Foreground="{StaticResource TextMuted}" />
+                        </Grid>
+
+                        <Grid Grid.Row="2">
+                            <Border x:Name="EmptyRecommendations" Background="#080F1C" BorderBrush="#1C334C"
+                                    BorderThickness="1" CornerRadius="10" Padding="30">
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="390">
+                                    <Border Width="58" Height="58" CornerRadius="29" BorderBrush="#28516B" BorderThickness="1"
+                                            Background="#102438" HorizontalAlignment="Center">
+                                        <TextBlock Text="⌁" FontFamily="Consolas" FontSize="30" Foreground="{StaticResource Accent}"
+                                                   HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </Border>
+                                    <TextBlock Text="MATRIZ EN ESPERA" Style="{StaticResource EyebrowText}" FontSize="12"
+                                               HorizontalAlignment="Center" Margin="0,16,0,0" />
+                                    <TextBlock Text="Selecciona tu línea y uno o más rivales. El motor evaluará los campeones de esa línea y mostrará las cinco opciones disponibles con mejor score."
+                                               TextAlignment="Center" TextWrapping="Wrap" Foreground="{StaticResource TextMuted}"
+                                               FontSize="13" LineHeight="20" Margin="0,9,0,0" />
+                                </StackPanel>
+                            </Border>
+
+                            <ScrollViewer x:Name="RecommendationsScroll" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                                <ItemsControl x:Name="RecommendationsList">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Button Style="{StaticResource RecommendationButton}" Tag="{Binding}" Click="Recommendation_Click">
+                                            <Border Background="#0F1B2C" BorderBrush="#1D3952" BorderThickness="1"
+                                                    CornerRadius="9" Padding="14,12" Margin="0,0,0,9">
+                                                <Grid>
+                                                    <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="2*" MinWidth="150"/><ColumnDefinition Width="76"/><ColumnDefinition Width="3*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                                        <Border Width="42" Height="42" CornerRadius="7" BorderBrush="#2E6074" BorderThickness="1" Background="#0A1220">
+                                                            <Image Source="{Binding ImageUrl}" Width="40" Height="40" Stretch="UniformToFill" />
+                                                        </Border>
+                                                        <StackPanel Margin="10,0,0,0" VerticalAlignment="Center">
+                                                            <TextBlock Text="{Binding Name}" FontSize="15" FontWeight="SemiBold" TextWrapping="Wrap" />
+                                                            <TextBlock Text="{Binding Verdict}" FontFamily="Consolas" FontSize="9" Foreground="{StaticResource Accent}" Margin="0,3,0,0" />
+                                                        </StackPanel>
+                                                    </StackPanel>
+                                                    <Border Grid.Column="1" Background="#122D3D" BorderBrush="#2E6074" BorderThickness="1"
+                                                            CornerRadius="7" Width="58" Height="36" HorizontalAlignment="Left">
+                                                        <TextBlock Text="{Binding Score, StringFormat={}{0:F2}}" Foreground="{StaticResource Accent}" FontFamily="Consolas"
+                                                                   FontSize="15" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                    </Border>
+                                                    <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                                                        <TextBlock Text="{Binding Profile}" Foreground="#B8C7D9" FontFamily="Consolas" FontSize="11" TextWrapping="Wrap" />
+                                                        <TextBlock Text="{Binding StatLine}" Foreground="#8DA6BE" TextWrapping="Wrap" FontFamily="Consolas" FontSize="9" Margin="0,4,0,0" />
+                                                    </StackPanel>
+                                                    <TextBlock Grid.Row="1" Grid.ColumnSpan="3" Text="{Binding Reason}" Foreground="{StaticResource TextMuted}"
+                                                               FontSize="12" LineHeight="18" Margin="0,8,0,0" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                                    <StackPanel Grid.Row="2" Grid.ColumnSpan="3" Margin="0,8,0,0">
+                                                        <TextBlock Text="{Binding PersonalLine}" Foreground="#A3DFC7" FontSize="11" TextWrapping="Wrap" />
+                                                        <TextBlock Text="{Binding Breakdown}" Foreground="#8DA6BE" FontSize="10" TextWrapping="Wrap" Margin="0,4,0,0" />
+                                                        <TextBlock Text="{Binding MatchupReason}" Foreground="#BBDCF0" FontSize="12" TextWrapping="Wrap" Margin="0,6,0,0" />
+                                                        <TextBlock Foreground="#F6B4AC" FontSize="12" TextWrapping="Wrap" Margin="0,5,0,0"><Run Text="RIESGOS: "/><Run Text="{Binding Risk}"/></TextBlock>
+                                                        <TextBlock Foreground="#A3DFC7" FontSize="12" TextWrapping="Wrap" Margin="0,5,0,0"><Run Text="PLAN: "/><Run Text="{Binding Plan}"/></TextBlock>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Border>
+                                            </Button>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </ScrollViewer>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+            </ScrollViewer>
+
+            <Grid x:Name="FooterGrid" Grid.Row="3" Margin="16,0,16,8">
+                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                <TextBlock Text="ESTÁNDAR · 1.0"
+                           FontFamily="Consolas" FontSize="9" Foreground="#587087" VerticalAlignment="Center" />
+                <TextBlock Grid.Column="1" x:Name="FooterDataText" Text="DATA: INITIALIZING" FontFamily="Consolas" FontSize="9"
+                           Foreground="#587087" VerticalAlignment="Center" TextWrapping="Wrap" TextAlignment="Right" />
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

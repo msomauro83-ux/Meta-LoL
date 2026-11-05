@@ -1,0 +1,14 @@
+<FileList TargetFrameworkIdentifier=".NETStandard" TargetFrameworkVersion="2.0" FrameworkName="Microsoft.Android.Runtimes" Name=".NET 10.0 - Microsoft.Android.Runtimes">
+  <File Type="Native" Path="runtimes/android-arm64/native/libarchive-dso-stub.so" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-arm64/native/libc.so" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-arm64/native/libdl.so" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-arm64/native/liblog.so" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-arm64/native/libm.so" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-arm64/native/libmono-android.debug.so" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-arm64/native/libmono-android.release.so" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-arm64/native/libunwind_xamarin-debug.a" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-arm64/native/libunwind_xamarin-release.a" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-arm64/native/libxamarin-debug-app-helper.so" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-arm64/native/libxamarin-native-tracing.so" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-arm64/native/libz.so" FileVersion="0.0.0.0" Profile="Android" />
+</FileList>

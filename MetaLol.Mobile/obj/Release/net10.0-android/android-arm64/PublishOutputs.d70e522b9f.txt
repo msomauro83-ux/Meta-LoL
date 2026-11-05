@@ -1,0 +1,3 @@
+C:\Users\Usuario\Documents\Meta LoL\MetaLol.Mobile\bin\Release\net10.0-android\android-arm64\publish\com.metalol.coach-Signed.apk
+C:\Users\Usuario\Documents\Meta LoL\MetaLol.Mobile\bin\Release\net10.0-android\android-arm64\publish\com.metalol.coach.apk
+C:\Users\Usuario\Documents\Meta LoL\MetaLol.Mobile\bin\Release\net10.0-android\android-arm64\publish\_Microsoft.Android.Resource.Designer.dll

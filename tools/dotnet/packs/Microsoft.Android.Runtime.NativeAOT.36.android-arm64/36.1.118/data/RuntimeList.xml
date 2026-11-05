@@ -1,0 +1,5 @@
+<FileList TargetFrameworkIdentifier=".NETStandard" TargetFrameworkVersion="2.0" FrameworkName="Microsoft.Android.Runtimes" Name=".NET 10.0 - Microsoft.Android.Runtimes">
+  <File Type="Managed" Path="runtimes/android-arm64/lib/net10.0/Microsoft.Android.Runtime.NativeAOT.dll" AssemblyName="Microsoft.Android.Runtime.NativeAOT" PublicKeyToken="84e04ff9cfb79065" AssemblyVersion="1.0.0.0" FileVersion="1.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-arm64/native/libnaot-android.debug-static-debug.a" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-arm64/native/libnaot-android.release-static-release.a" FileVersion="0.0.0.0" Profile="Android" />
+</FileList>

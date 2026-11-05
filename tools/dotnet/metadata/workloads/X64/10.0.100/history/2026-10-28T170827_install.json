@@ -1,0 +1,63 @@
+{
+  "TimeStarted": "2026-10-28T17:08:27.2053204-03:00",
+  "TimeCompleted": "2026-10-28T17:12:33.0568707-03:00",
+  "CommandName": "install",
+  "RollbackFileContents": null,
+  "CommandLineArgs": [
+    "C:\\Users\\Usuario\\Documents\\Meta LoL\\tools\\dotnet\\sdk\\10.0.100\\dotnet.dll",
+    "workload",
+    "install",
+    "maui-android",
+    "--skip-manifest-update",
+    "--disable-parallel"
+  ],
+  "Succeeded": true,
+  "ErrorMessage": null,
+  "StateBeforeCommand": {
+    "ManifestVersions": {
+      "microsoft.net.sdk.android": "36.0.0-rc.2.332/10.0.100-rc.2",
+      "microsoft.net.sdk.ios": "26.0.10970-net10-rc.2/10.0.100-rc.2",
+      "microsoft.net.sdk.maccatalyst": "26.0.10970-net10-rc.2/10.0.100-rc.2",
+      "microsoft.net.sdk.macos": "26.0.10970-net10-rc.2/10.0.100-rc.2",
+      "microsoft.net.sdk.maui": "10.0.0-rc.2.25504.7/10.0.100-rc.2",
+      "microsoft.net.sdk.tvos": "26.0.10970-net10-rc.2/10.0.100-rc.2",
+      "microsoft.net.workload.mono.toolchain.current": "10.0.100/10.0.100",
+      "microsoft.net.workload.emscripten.current": "10.0.100/10.0.100",
+      "microsoft.net.workload.emscripten.net6": "10.0.100/10.0.100",
+      "microsoft.net.workload.emscripten.net7": "10.0.100/10.0.100",
+      "microsoft.net.workload.emscripten.net8": "10.0.100/10.0.100",
+      "microsoft.net.workload.emscripten.net9": "10.0.100/10.0.100",
+      "microsoft.net.workload.mono.toolchain.net6": "10.0.100/10.0.100",
+      "microsoft.net.workload.mono.toolchain.net7": "10.0.100/10.0.100",
+      "microsoft.net.workload.mono.toolchain.net8": "10.0.100/10.0.100",
+      "microsoft.net.workload.mono.toolchain.net9": "10.0.100/10.0.100"
+    },
+    "WorkloadSetVersion": "10.0.100-manifests.4c0ca8ba",
+    "InstalledWorkloads": []
+  },
+  "StateAfterCommand": {
+    "ManifestVersions": {
+      "microsoft.net.sdk.android": "36.0.0-rc.2.332/10.0.100-rc.2",
+      "microsoft.net.sdk.ios": "26.0.10970-net10-rc.2/10.0.100-rc.2",
+      "microsoft.net.sdk.maccatalyst": "26.0.10970-net10-rc.2/10.0.100-rc.2",
+      "microsoft.net.sdk.macos": "26.0.10970-net10-rc.2/10.0.100-rc.2",
+      "microsoft.net.sdk.maui": "10.0.0-rc.2.25504.7/10.0.100-rc.2",
+      "microsoft.net.sdk.tvos": "26.0.10970-net10-rc.2/10.0.100-rc.2",
+      "microsoft.net.workload.mono.toolchain.current": "10.0.100/10.0.100",
+      "microsoft.net.workload.emscripten.current": "10.0.100/10.0.100",
+      "microsoft.net.workload.emscripten.net6": "10.0.100/10.0.100",
+      "microsoft.net.workload.emscripten.net7": "10.0.100/10.0.100",
+      "microsoft.net.workload.emscripten.net8": "10.0.100/10.0.100",
+      "microsoft.net.workload.emscripten.net9": "10.0.100/10.0.100",
+      "microsoft.net.workload.mono.toolchain.net6": "10.0.100/10.0.100",
+      "microsoft.net.workload.mono.toolchain.net7": "10.0.100/10.0.100",
+      "microsoft.net.workload.mono.toolchain.net8": "10.0.100/10.0.100",
+      "microsoft.net.workload.mono.toolchain.net9": "10.0.100/10.0.100"
+    },
+    "WorkloadSetVersion": "10.0.100-manifests.4c0ca8ba",
+    "InstalledWorkloads": [
+      "maui-android"
+    ]
+  },
+  "GlobalJsonVersion": null
+}

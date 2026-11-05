@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <AndroidSdkBuildToolsVersion Condition="'$(AndroidSdkBuildToolsVersion)' == ''">35.0.0</AndroidSdkBuildToolsVersion>
+    <AndroidCommandLineToolsVersion Condition=" '$(AndroidCommandLineToolsVersion)' == '' ">12.0</AndroidCommandLineToolsVersion>
+    <AndroidSdkPlatformToolsVersion Condition="'$(AndroidSdkPlatformToolsVersion)' == ''">34.0.5</AndroidSdkPlatformToolsVersion>
+    <AndroidSdkEmulatorVersion Condition="'$(AndroidSdkEmulatorVersion)' == ''"></AndroidSdkEmulatorVersion>
+    <AndroidSdkPlatformVersion Condition="'$(AndroidSdkPlatformVersion)' == ''">android-35</AndroidSdkPlatformVersion>
+    <AndroidNdkVersion Condition="'$(AndroidNdkVersion)' == ''">26.1.10909125</AndroidNdkVersion>
+    <JavaSdkVersion Condition="'$(JavaSdkVersion)' == ''">17.0.14</JavaSdkVersion>
+  </PropertyGroup>
+</Project>

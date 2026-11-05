@@ -1,0 +1,177 @@
+<!--
+***********************************************************************************************
+Microsoft.Android.Sdk.Aot.targets
+
+MSBuild targets for .NET 6+ AOT support.
+
+For <MonoAOTCompiler/> usage, see:
+* https://github.com/dotnet/runtime/blob/15dec9a2aa5a4236d6ba70de2e9c146867b9d2e0/src/tasks/AotCompilerTask/MonoAOTCompiler.cs
+* https://github.com/dotnet/runtime/blob/15dec9a2aa5a4236d6ba70de2e9c146867b9d2e0/src/mono/netcore/nuget/Microsoft.NET.Runtime.MonoAOTCompiler.Task/README.md
+
+These targets are running within the _ComputeFilesToPublishForRuntimeIdentifiers target.
+They run in a context of an inner build with a single $(RuntimeIdentifier).
+
+***********************************************************************************************
+-->
+<Project>
+
+  <!--
+    NOTE: currently, the only way to allow $(AotAssemblies) in
+    .csproj files is to import these in the Android workload
+    when $(MonoAOTCompilerTasksAssemblyPath) is blank:
+    https://github.com/dotnet/runtime/blob/69711860262e44458bbe276393ea3eb9f7a2192a/src/mono/nuget/Microsoft.NET.Workload.Mono.Toolchain.Manifest/WorkloadManifest.targets.in#L20-L25
+  -->
+  <ImportGroup Condition=" '$(MonoAOTCompilerTasksAssemblyPath)' == '' and '$(AotAssemblies)' == 'true' ">
+    <Import Project="Sdk.props" Sdk="Microsoft.NET.Runtime.MonoAOTCompiler.Task" />
+    <Import Project="Sdk.props" Sdk="Microsoft.NETCore.App.Runtime.AOT.Cross.android-x86" />
+    <Import Project="Sdk.props" Sdk="Microsoft.NETCore.App.Runtime.AOT.Cross.android-x64" />
+    <Import Project="Sdk.props" Sdk="Microsoft.NETCore.App.Runtime.AOT.Cross.android-arm" />
+    <Import Project="Sdk.props" Sdk="Microsoft.NETCore.App.Runtime.AOT.Cross.android-arm64" />
+  </ImportGroup>
+
+  <UsingTask TaskName="Xamarin.Android.Tasks.GetAotAssemblies" AssemblyFile="$(_XamarinAndroidBuildTasksAssembly)" />
+
+  <Target Name="_AndroidAotInputs">
+    <ItemGroup>
+      <_AndroidAotInputs Include="@(ResolvedFileToPublish)" Condition=" '%(ResolvedFileToPublish.Extension)' == '.dll' and '%(ResolvedFileToPublish.AssetType)' != 'resources' " />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="_AndroidAot"
+      Condition=" '$(AotAssemblies)' == 'true' and '$(RuntimeIdentifier)' != '' "
+      DependsOnTargets="_CreatePropertiesCache;_AndroidAotInputs;_AndroidAotCompilation">
+    <ReadLinesFromFile File="$(_AndroidStampDirectory)_AndroidAot.stamp">
+      <Output TaskParameter="Lines" ItemName="_AotCompiledAssemblies" />
+    </ReadLinesFromFile>
+    <ItemGroup>
+      <FileWrites Include="@(_AotCompiledAssemblies)" />
+      <ResolvedFileToPublish
+          Include="@(_AotCompiledAssemblies)"
+          Condition=" '$(_AndroidUseMarshalMethods)' != 'True' "
+          ArchiveFileName="libaot-$([System.IO.Path]::GetFileNameWithoutExtension('%(_AotCompiledAssemblies.Identity)')).so"
+      />
+      <_AotResolvedFileToPublish
+          Include="@(_AotCompiledAssemblies)"
+          Condition=" '$(_AndroidUseMarshalMethods)' == 'True' "
+          ArchiveFileName="libaot-$([System.IO.Path]::GetFileNameWithoutExtension('%(_AotCompiledAssemblies.Identity)')).so"
+      />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="_AndroidAotAndComputeFilesToPublishForRuntimeIdentifiers"
+          DependsOnTargets="_AndroidAot"
+          Returns="@(_AotResolvedFileToPublish)">
+    <ItemGroup>
+      <_AotResolvedFileToPublish Remove="@(_SourceItemsToCopyToPublishDirectory)" />
+      <_AotResolvedFileToPublish
+          Condition=" '%(_AotResolvedFileToPublish.RuntimeIdentifier)' == '' "
+          Update="@(_AotResolvedFileToPublish)"
+          RuntimeIdentifier="$(RuntimeIdentifier)"
+      />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="_AndroidAotCompilation"
+      Inputs="@(_AndroidAotInputs)"
+      Outputs="$(_AndroidStampDirectory)_AndroidAot.stamp">
+    <ItemGroup>
+      <AndroidAotProfile Include="$(MSBuildThisFileDirectory)dotnet.aotprofile" Condition=" '$(AndroidEnableProfiledAot)' == 'true' and '$(AndroidUseDefaultAotProfile)' != 'false' " />
+    </ItemGroup>
+    <GetAotAssemblies
+        AndroidAotMode="$(AndroidAotMode)"
+        AndroidNdkDirectory="$(AndroidNdkDirectory)"
+        AndroidBinUtilsDirectory="$(AndroidBinUtilsDirectory)"
+        AndroidApiLevel="$(_AndroidApiLevel)"
+        MinimumSupportedApiLevel="$(AndroidMinimumSupportedApiLevel)"
+        AndroidSequencePointsMode="$(_SequencePointsMode)"
+        TargetName="$(TargetName)"
+        ResolvedAssemblies="@(_AndroidAotInputs)"
+        AotOutputDirectory="$(_AndroidAotBinDirectory)"
+        RuntimeIdentifier="$(RuntimeIdentifier)"
+        EnableLLVM="$(EnableLLVM)"
+        Profiles="@(AndroidAotProfile)"
+        StripLibraries="$(_AndroidAotStripLibraries)"
+        ZipAlignmentPages="$(AndroidZipAlignment)">
+      <Output PropertyName="_Triple"     TaskParameter="Triple" />
+      <Output PropertyName="_ToolPrefix" TaskParameter="ToolPrefix" />
+      <Output PropertyName="_MsymPath"   TaskParameter="MsymPath" />
+      <Output PropertyName="_LdName"     TaskParameter="LdName" />
+      <Output PropertyName="_LdFlags"    TaskParameter="LdFlags" />
+      <Output ItemName="_MonoAOTAssemblies" TaskParameter="ResolvedAssemblies" />
+    </GetAotAssemblies>
+    <ItemGroup Condition=" '$(AndroidExtraAotOptions)' != '' ">
+      <_MonoAOTAssemblies Update="@(_MonoAOTAssemblies)" ProcessArguments="$(AndroidExtraAotOptions)" />
+    </ItemGroup>
+    <PropertyGroup>
+      <_MonoAOTCompilerPath>@(MonoAotCrossCompiler->WithMetadataValue('RuntimeIdentifier', '$(RuntimeIdentifier)'))</_MonoAOTCompilerPath>
+      <_LLVMPath Condition=" '$(EnableLLVM)' == 'true' ">$([System.IO.Path]::GetDirectoryName ('$(_MonoAOTCompilerPath)'))</_LLVMPath>
+    </PropertyGroup>
+    <MakeDir Directories="$(IntermediateOutputPath)aot\" />
+    <MonoAOTCompiler
+        Triple="$(_Triple)"
+        ToolPrefix="$(_ToolPrefix)"
+        MsymPath="$(_MsymPath)"
+        Assemblies="@(_MonoAOTAssemblies)"
+        CompilerBinaryPath="$(_MonoAOTCompilerPath)"
+        DisableParallelAot="$(_DisableParallelAot)"
+        IntermediateOutputPath="$(IntermediateOutputPath)"
+        LibraryFormat="So"
+        Mode="$(AndroidAotMode)"
+        OutputDir="$(IntermediateOutputPath)aot\"
+        OutputType="Library"
+        UseAotDataFile="false"
+        UseLLVM="$(EnableLLVM)"
+        LLVMPath="$(_LLVMPath)"
+        LdName="$(_LdName)"
+        LdFlags="$(_LdFlags)"
+        CollectTrimmingEligibleMethods="$(AndroidStripILAfterAOT)"
+        TrimmingEligibleMethodsOutputDirectory="$(IntermediateOutputPath)tokens"
+        WorkingDirectory="$(MSBuildProjectDirectory)"
+        AotArguments="$(AndroidAotAdditionalArguments)">
+      <Output TaskParameter="CompiledAssemblies" ItemName="_MonoAOTCompiledAssemblies" />
+      <Output TaskParameter="FileWrites"         ItemName="FileWrites" />
+    </MonoAOTCompiler>
+    <ILStrip
+        Condition=" '$(AndroidStripILAfterAOT)' == 'true' "
+        TrimIndividualMethods="true"
+        Assemblies="@(_MonoAOTCompiledAssemblies)"
+        IntermediateOutputPath="$(IntermediateOutputPath)"
+        DisableParallelStripping="$(_DisableParallelAot)">
+      <Output TaskParameter="UpdatedAssemblies" ItemName="_ILStripUpdatedAssemblies" />
+    </ILStrip>
+    <Copy
+        Condition=" '$(AndroidStripILAfterAOT)' == 'true' and '%(_ILStripUpdatedAssemblies.ILStripped)' == 'true' and '%(_ILStripUpdatedAssemblies.UntrimmedAssemblyFilePath)' != '' "
+        SourceFiles="@(_ILStripUpdatedAssemblies)"
+        DestinationFiles="@(_ILStripUpdatedAssemblies->'%(UntrimmedAssemblyFilePath)')"
+    />
+    <ItemGroup>
+      <_UpdateStamp Include="@(_ILStripUpdatedAssemblies)" Condition=" '$(AndroidStripILAfterAOT)' == 'true' and '%(_ILStripUpdatedAssemblies.ILStripped)' == 'true' " />
+    </ItemGroup>
+
+    <!-- We must update the stamp file used by `_GenerateJavaStubs`, but `$(_AndroidStampDirectory)` **here** is inside a per-RID parent
+         directory (e.g. `obj/Release/android-arm64/stamp`) and not the "top level" one (`obj/Release/stamp`).  Since **both** are set
+         in the same place (in `Xamarin.Android.Common.targets`), we don't know where the "top level" one really is.  Hence the hack.
+         If the locations or their relative paths change, then the `EnableAndroidStripILAfterAOTFalse` test will fail.
+
+         However, there should be a better way to do it... Ideally, when marshal methods are enabled **nothing** should modify any
+         assemblies after marshal method classifier and rewriter runs.
+    -->
+    <PropertyGroup>
+      <_StampDir>$(_AndroidStampDirectory)\..\..\stamp</_StampDir>
+    </PropertyGroup>
+    <MakeDir
+        Condition=" '$(AndroidStripILAfterAOT)' == 'true' and '@(_UpdateStamp->Count())' &gt; 0 "
+        Directories="$(_StampDir)"
+    />
+    <Touch
+        Condition=" '$(AndroidStripILAfterAOT)' == 'true' and '@(_UpdateStamp->Count())' &gt; 0 "
+        Files="$(_StampDir)\_GenerateJavaStubs.stamp"
+        AlwaysCreate="True"
+    />
+    <WriteLinesToFile
+        File="$(_AndroidStampDirectory)_AndroidAot.stamp"
+        Lines="@(_MonoAOTCompiledAssemblies->'%(LibraryFile)')"
+        Overwrite="true"
+    />
+  </Target>
+</Project>

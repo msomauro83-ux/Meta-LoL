@@ -1,0 +1,8 @@
+<api type="release" assembly-name="MetaLol.Standard.Mobile" mvid="35b31f5c229b451e93c7116bb431e27e">
+  <module assembly-name="MetaLol.Standard.Mobile" mvid="35b31f5c229b451e93c7116bb431e27e" mvid-bytes="XB+zNZsiHkWTxxFrtDHifg==">
+    <types-scratch>
+      <entry key="crc6443987d272cc69220/MainActivity" java-name="crc6443987d272cc69220/MainActivity" managed-type-name="MetaLol.Mobile.MainActivity" token="33554496" />
+      <entry key="crc6443987d272cc69220/MainApplication" java-name="crc6443987d272cc69220/MainApplication" managed-type-name="MetaLol.Mobile.MainApplication" token="33554497" />
+    </types-scratch>
+  </module>
+</api>

@@ -1,0 +1,35 @@
+﻿<!--
+***********************************************************************************************
+Microsoft.Android.Sdk.SupportedPlatforms.targets
+
+Specifies the supported Android platform versions for this SDK.
+
+***********************************************************************************************
+-->
+<Project>
+  <PropertyGroup>
+    <TargetPlatformSupported>true</TargetPlatformSupported>
+    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">36.0</TargetPlatformVersion>
+    <AndroidMinimumSupportedApiLevel Condition=" '$(AndroidMinimumSupportedApiLevel)' == '' ">21</AndroidMinimumSupportedApiLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <AndroidSdkSupportedTargetPlatformVersion Include="21.0" DefineConstantsOnly="true" />
+    <AndroidSdkSupportedTargetPlatformVersion Include="22.0" DefineConstantsOnly="true" />
+    <AndroidSdkSupportedTargetPlatformVersion Include="23.0" DefineConstantsOnly="true" />
+    <AndroidSdkSupportedTargetPlatformVersion Include="24.0" DefineConstantsOnly="true" />
+    <AndroidSdkSupportedTargetPlatformVersion Include="25.0" DefineConstantsOnly="true" />
+    <AndroidSdkSupportedTargetPlatformVersion Include="26.0" DefineConstantsOnly="true" />
+    <AndroidSdkSupportedTargetPlatformVersion Include="27.0" DefineConstantsOnly="true" />
+    <AndroidSdkSupportedTargetPlatformVersion Include="28.0" DefineConstantsOnly="true" />
+    <AndroidSdkSupportedTargetPlatformVersion Include="29.0" DefineConstantsOnly="true" />
+    <AndroidSdkSupportedTargetPlatformVersion Include="30.0" DefineConstantsOnly="true" />
+    <AndroidSdkSupportedTargetPlatformVersion Include="31.0" DefineConstantsOnly="true" />
+    <AndroidSdkSupportedTargetPlatformVersion Include="32.0" DefineConstantsOnly="true" />
+    <AndroidSdkSupportedTargetPlatformVersion Include="33.0" DefineConstantsOnly="true" />
+    <AndroidSdkSupportedTargetPlatformVersion Include="34.0" DefineConstantsOnly="true" />
+    <AndroidSdkSupportedTargetPlatformVersion Include="35.0" DefineConstantsOnly="true" />
+    <AndroidSdkSupportedTargetPlatformVersion Include="36.0" />
+    <AndroidSdkSupportedTargetPlatformVersion Include="36.1" />
+    <SdkSupportedTargetPlatformVersion Include="@(AndroidSdkSupportedTargetPlatformVersion)" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,7 @@
+<FileList TargetFrameworkIdentifier=".NETStandard" TargetFrameworkVersion="2.0" FrameworkName="Microsoft.Android" Name=".NET 10.0 - Microsoft.Android">
+  <File Type="Managed" Path="runtimes/android/lib/net10.0/Java.Interop.dll" AssemblyName="Java.Interop" PublicKeyToken="84e04ff9cfb79065" AssemblyVersion="10.0.0.0" FileVersion="10.0.0.67" Profile="Android" />
+  <File Type="Managed" Path="runtimes/android/lib/net10.0/Mono.Android.Export.dll" AssemblyName="Mono.Android.Export" PublicKeyToken="84e04ff9cfb79065" AssemblyVersion="1.0.0.0" FileVersion="1.0.0.0" Profile="Android" />
+  <File Type="Managed" Path="runtimes/android/lib/net10.0/Mono.Android.Runtime.dll" AssemblyName="Mono.Android.Runtime" PublicKeyToken="84e04ff9cfb79065" AssemblyVersion="0.0.0.0" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Managed" Path="runtimes/android/lib/net10.0/Mono.Android.dll" AssemblyName="Mono.Android" PublicKeyToken="84e04ff9cfb79065" AssemblyVersion="0.0.0.0" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Managed" Path="runtimes/android/lib/net10.0/System.IO.Hashing.dll" AssemblyName="System.IO.Hashing" PublicKeyToken="cc7b13ffcd2ddd51" AssemblyVersion="10.0.0.12" FileVersion="10.0.1226.42308" Profile="Android" />
+</FileList>

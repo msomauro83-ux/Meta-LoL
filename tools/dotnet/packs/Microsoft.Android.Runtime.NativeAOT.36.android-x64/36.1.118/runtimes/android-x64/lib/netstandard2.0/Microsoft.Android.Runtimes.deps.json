@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETStandard,Version=v2.0/android-x64",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETStandard,Version=v2.0": {},
+    ".NETStandard,Version=v2.0/android-x64": {
+      "Microsoft.Android.Runtime.NativeAOT.36.android-x64/1.0.0": {
+        "runtime": {
+          "Microsoft.Android.Runtime.NativeAOT.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "native": {
+          "libnaot-android.debug-static-debug.a": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libnaot-android.release-static-release.a": {
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Microsoft.Android.Runtime.NativeAOT.36.android-x64/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "",
+      "path": "microsoft.android.runtime.nativeaot.36.android-x64/1.0.0"
+    }
+  }
+}

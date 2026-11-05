@@ -1,0 +1,10 @@
+<api type="debug" assembly-name="MetaLol.Mobile" mvid="d905151067d8418fa4578cfdd712eb16">
+  <java-to-managed>
+    <entry java-name="crc64b8acf9f0ac33001c/MainActivity" managed-name="MetaLol.Mobile.MainActivity, MetaLol.Mobile" managed-type-token-id="33554458" />
+    <entry java-name="crc64b8acf9f0ac33001c/MainApplication" managed-name="MetaLol.Mobile.MainApplication, MetaLol.Mobile" managed-type-token-id="33554459" />
+  </java-to-managed>
+  <managed-to-java>
+    <entry java-name="crc64b8acf9f0ac33001c/MainActivity" managed-name="MetaLol.Mobile.MainActivity, MetaLol.Mobile" managed-type-token-id="33554458" />
+    <entry java-name="crc64b8acf9f0ac33001c/MainApplication" managed-name="MetaLol.Mobile.MainApplication, MetaLol.Mobile" managed-type-token-id="33554459" />
+  </managed-to-java>
+</api>

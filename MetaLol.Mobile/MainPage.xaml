@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:MetaLol.Desktop"
+             x:Class="MetaLol.Mobile.MainPage"
+             x:Name="PageRoot"
+             BackgroundColor="#07111F"
+             Title="Meta LoL Mobile">
+
+    <ContentPage.Resources>
+        <Style x:Key="SectionCard" TargetType="Border">
+            <Setter Property="BackgroundColor" Value="#0D1A2C" />
+            <Setter Property="Stroke" Value="#183A55" />
+            <Setter Property="StrokeThickness" Value="1" />
+            <Setter Property="Padding" Value="16" />
+            <Setter Property="StrokeShape" Value="RoundRectangle 18" />
+        </Style>
+        <Style x:Key="SectionEyebrow" TargetType="Label">
+            <Setter Property="TextColor" Value="#39D9FF" />
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="CharacterSpacing" Value="2" />
+        </Style>
+        <Style x:Key="SectionTitle" TargetType="Label">
+            <Setter Property="TextColor" Value="#F5F8FF" />
+            <Setter Property="FontSize" Value="21" />
+            <Setter Property="FontAttributes" Value="Bold" />
+        </Style>
+        <Style x:Key="RoleLabel" TargetType="Label">
+            <Setter Property="TextColor" Value="#7F95AA" />
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="CharacterSpacing" Value="1.2" />
+            <Setter Property="VerticalTextAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="ChampionPicker" TargetType="Picker">
+            <Setter Property="TextColor" Value="#F5F8FF" />
+            <Setter Property="TitleColor" Value="#7F95AA" />
+            <Setter Property="BackgroundColor" Value="#101F33" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="HeightRequest" Value="48" />
+            <Setter Property="HorizontalOptions" Value="Fill" />
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid>
+        <ScrollView>
+            <VerticalStackLayout Padding="18,24,18,40" Spacing="16">
+                <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto">
+                    <VerticalStackLayout Grid.Row="0" Grid.Column="0" Spacing="2">
+                        <Label Text="META LOL" TextColor="#39D9FF" FontSize="12" FontAttributes="Bold" CharacterSpacing="3" />
+                        <Label Text="Draft Lab" TextColor="#F5F8FF" FontSize="34" FontAttributes="Bold" />
+                    </VerticalStackLayout>
+                    <Border Grid.Row="0" Grid.Column="1" Padding="10,6" BackgroundColor="#123044" Stroke="#2BC7EA" StrokeShape="RoundRectangle 14" VerticalOptions="Center">
+                        <Label x:Name="PatchLabel" Text="CARGANDO" TextColor="#72E7FF" FontSize="10" FontAttributes="Bold" />
+                    </Border>
+                    <Label Grid.Row="1" Grid.ColumnSpan="2" Margin="0,8,0,0"
+                           Text="Practica composiciones y aprende qué jungla encaja mejor. Selección 100% manual."
+                           TextColor="#8EA4B9" FontSize="14" LineBreakMode="WordWrap" />
+                    <BoxView Grid.Row="2" Grid.ColumnSpan="2" Margin="0,16,0,0" HeightRequest="1" Color="#183A55" />
+                </Grid>
+
+                <Border Style="{StaticResource SectionCard}">
+                    <VerticalStackLayout Spacing="12">
+                        <Label Text="ENEMY MATRIX" Style="{StaticResource SectionEyebrow}" />
+                        <Label Text="Equipo rival" Style="{StaticResource SectionTitle}" />
+                        <Label Text="Elige los cinco rivales por posición." TextColor="#8196AA" FontSize="13" />
+                        <Grid ColumnDefinitions="62,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto" ColumnSpacing="10" RowSpacing="9">
+                            <Label Grid.Row="0" Text="TOP" Style="{StaticResource RoleLabel}" />
+                            <Picker x:Name="EnemyTopPicker" Grid.Row="0" Grid.Column="1" Style="{StaticResource ChampionPicker}" ItemDisplayBinding="{Binding Name, x:DataType=model:Champion}" SelectedIndexChanged="OnDraftChanged" />
+                            <Label Grid.Row="1" Text="JUNGLA" Style="{StaticResource RoleLabel}" />
+                            <Picker x:Name="EnemyJunglePicker" Grid.Row="1" Grid.Column="1" Style="{StaticResource ChampionPicker}" ItemDisplayBinding="{Binding Name, x:DataType=model:Champion}" SelectedIndexChanged="OnDraftChanged" />
+                            <Label Grid.Row="2" Text="MID" Style="{StaticResource RoleLabel}" />
+                            <Picker x:Name="EnemyMidPicker" Grid.Row="2" Grid.Column="1" Style="{StaticResource ChampionPicker}" ItemDisplayBinding="{Binding Name, x:DataType=model:Champion}" SelectedIndexChanged="OnDraftChanged" />
+                            <Label Grid.Row="3" Text="ADC" Style="{StaticResource RoleLabel}" />
+                            <Picker x:Name="EnemyAdcPicker" Grid.Row="3" Grid.Column="1" Style="{StaticResource ChampionPicker}" ItemDisplayBinding="{Binding Name, x:DataType=model:Champion}" SelectedIndexChanged="OnDraftChanged" />
+                            <Label Grid.Row="4" Text="SOPORTE" Style="{StaticResource RoleLabel}" />
+                            <Picker x:Name="EnemySupportPicker" Grid.Row="4" Grid.Column="1" Style="{StaticResource ChampionPicker}" ItemDisplayBinding="{Binding Name, x:DataType=model:Champion}" SelectedIndexChanged="OnDraftChanged" />
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Style="{StaticResource SectionCard}">
+                    <VerticalStackLayout Spacing="12">
+                        <Label Text="ALLY SYNERGY" Style="{StaticResource SectionEyebrow}" TextColor="#A481FF" />
+                        <Label Text="Tu equipo" Style="{StaticResource SectionTitle}" />
+                        <Label Text="Tú ocupas jungla. Selecciona a tus cuatro aliados." TextColor="#8196AA" FontSize="13" />
+                        <Grid ColumnDefinitions="62,*" RowDefinitions="Auto,Auto,Auto,Auto" ColumnSpacing="10" RowSpacing="9">
+                            <Label Grid.Row="0" Text="TOP" Style="{StaticResource RoleLabel}" />
+                            <Picker x:Name="AllyTopPicker" Grid.Row="0" Grid.Column="1" Style="{StaticResource ChampionPicker}" ItemDisplayBinding="{Binding Name, x:DataType=model:Champion}" SelectedIndexChanged="OnDraftChanged" />
+                            <Label Grid.Row="1" Text="MID" Style="{StaticResource RoleLabel}" />
+                            <Picker x:Name="AllyMidPicker" Grid.Row="1" Grid.Column="1" Style="{StaticResource ChampionPicker}" ItemDisplayBinding="{Binding Name, x:DataType=model:Champion}" SelectedIndexChanged="OnDraftChanged" />
+                            <Label Grid.Row="2" Text="ADC" Style="{StaticResource RoleLabel}" />
+                            <Picker x:Name="AllyAdcPicker" Grid.Row="2" Grid.Column="1" Style="{StaticResource ChampionPicker}" ItemDisplayBinding="{Binding Name, x:DataType=model:Champion}" SelectedIndexChanged="OnDraftChanged" />
+                            <Label Grid.Row="3" Text="SOPORTE" Style="{StaticResource RoleLabel}" />
+                            <Picker x:Name="AllySupportPicker" Grid.Row="3" Grid.Column="1" Style="{StaticResource ChampionPicker}" ItemDisplayBinding="{Binding Name, x:DataType=model:Champion}" SelectedIndexChanged="OnDraftChanged" />
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                    <Label x:Name="SelectionStatusLabel" Text="Selecciona al menos un rival" TextColor="#7890A5" FontSize="12" VerticalTextAlignment="Center" />
+                    <Button Grid.Column="1" Text="LIMPIAR" Clicked="OnClearClicked" BackgroundColor="#12263A" TextColor="#72E7FF" FontSize="11" FontAttributes="Bold" CornerRadius="14" Padding="16,9" />
+                </Grid>
+
+                <Border x:Name="AnalysisPanel" Style="{StaticResource SectionCard}" IsVisible="False" Stroke="#2BC7EA">
+                    <VerticalStackLayout Spacing="14">
+                        <Label Text="DRAFT READOUT" Style="{StaticResource SectionEyebrow}" />
+                        <Label Text="Qué priorizar" Style="{StaticResource SectionTitle}" />
+                        <Label x:Name="SummaryLabel" TextColor="#C5D2DF" FontSize="13" LineBreakMode="WordWrap" />
+                        <VerticalStackLayout x:Name="PrioritiesLayout" Spacing="8" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <VerticalStackLayout x:Name="RecommendationsSection" Spacing="12" IsVisible="False">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <VerticalStackLayout Spacing="2">
+                            <Label Text="JUNGLE SELECT" Style="{StaticResource SectionEyebrow}" />
+                            <Label Text="Recomendaciones" Style="{StaticResource SectionTitle}" />
+                        </VerticalStackLayout>
+                        <Border Grid.Column="1" Padding="10,6" BackgroundColor="#17263C" Stroke="#A481FF" StrokeShape="RoundRectangle 12" VerticalOptions="End">
+                            <Label x:Name="ResultCountLabel" Text="0 OPCIONES" TextColor="#C7B6FF" FontSize="10" FontAttributes="Bold" />
+                        </Border>
+                    </Grid>
+                    <VerticalStackLayout x:Name="RecommendationsLayout" Spacing="10" />
+                </VerticalStackLayout>
+
+                <Border x:Name="EmptyState" Style="{StaticResource SectionCard}" Padding="22">
+                    <VerticalStackLayout Spacing="7" HorizontalOptions="Center">
+                        <Label Text="◎" TextColor="#39D9FF" FontSize="34" HorizontalTextAlignment="Center" />
+                        <Label Text="Arma una composición" TextColor="#F5F8FF" FontSize="18" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                        <Label Text="Las recomendaciones aparecerán automáticamente al elegir rivales." TextColor="#8196AA" FontSize="13" HorizontalTextAlignment="Center" />
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <Grid x:Name="LoadingOverlay" BackgroundColor="#E607111F" IsVisible="True">
+            <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="14">
+                <ActivityIndicator IsRunning="True" Color="#39D9FF" WidthRequest="42" HeightRequest="42" />
+                <Label x:Name="LoadingLabel" Text="Sincronizando campeones…" TextColor="#D7E7F5" FontSize="14" />
+            </VerticalStackLayout>
+        </Grid>
+    </Grid>
+</ContentPage>

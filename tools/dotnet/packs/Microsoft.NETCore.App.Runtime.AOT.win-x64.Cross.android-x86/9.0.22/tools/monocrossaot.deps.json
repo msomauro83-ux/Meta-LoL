@@ -1,0 +1,33 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0/win-x64",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {},
+    ".NETCoreApp,Version=v9.0/win-x64": {
+      "Microsoft.NETCore.App.Runtime.AOT.win-x64.Cross.android-x86/9.0.22": {
+        "native": {
+          "llc.exe": {
+            "fileVersion": "19.1.0.0"
+          },
+          "mono-aot-cross.exe": {
+            "fileVersion": "9.0.2226.52218"
+          },
+          "opt.exe": {
+            "fileVersion": "19.1.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Microsoft.NETCore.App.Runtime.AOT.win-x64.Cross.android-x86/9.0.22": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "",
+      "path": "microsoft.netcore.app.runtime.aot.win-x64.cross.android-x86/9.0.22"
+    }
+  }
+}

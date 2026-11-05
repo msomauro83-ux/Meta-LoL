@@ -1,0 +1,24 @@
+{
+  "apk": "C:\\Users\\Usuario\\Documents\\Meta LoL\\dist\\MetaLoL-Standard-Mobile-1.0-android.apk",
+  "bytes": 22028055,
+  "sha256": "45f4e8a5c63cb85ad9d7ff8e56ef4ac032f477c819c0c66a4d985a989b8dda9c",
+  "package": "com.metalol.standard.manual",
+  "version": "1.0",
+  "minSdk": 21,
+  "targetSdk": 36,
+  "architectures": [
+    "arm64-v8a",
+    "armeabi-v7a"
+  ],
+  "catalogVersion": "16.21.1",
+  "champions": 173,
+  "zipIntegrity": "PASS",
+  "signatureVerification": "See signature-verification.txt: v1, v2 and v3 verified",
+  "manualDraftTests": {
+    "passed": 16,
+    "failed": 0
+  },
+  "previousEditionFilesChecked": 109,
+  "previousEditionFilesChanged": 0,
+  "physicalDeviceTest": "Not run: no Android device connected"
+}

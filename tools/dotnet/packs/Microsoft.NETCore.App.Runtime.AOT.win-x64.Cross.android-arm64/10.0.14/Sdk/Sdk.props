@@ -1,0 +1,6 @@
+<Project>
+  <ItemGroup>
+    <MonoAotCrossCompiler Include="$(MSBuildThisFileDirectory)..\tools\mono-aot-cross.exe" RuntimeIdentifier="android-arm64" />
+  </ItemGroup>
+</Project>
+

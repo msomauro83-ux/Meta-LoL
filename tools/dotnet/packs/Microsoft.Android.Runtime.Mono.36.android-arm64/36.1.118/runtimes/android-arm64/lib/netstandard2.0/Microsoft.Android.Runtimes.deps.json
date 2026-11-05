@@ -1,0 +1,60 @@
+{
+  "runtimeTarget": {
+    "name": ".NETStandard,Version=v2.0/android-arm64",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETStandard,Version=v2.0": {},
+    ".NETStandard,Version=v2.0/android-arm64": {
+      "Microsoft.Android.Runtime.Mono.36.android-arm64/1.0.0": {
+        "native": {
+          "libmono-android.debug.so": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libmono-android.release.so": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libxamarin-debug-app-helper.so": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libxamarin-native-tracing.so": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libunwind_xamarin-debug.a": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libunwind_xamarin-release.a": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libc.so": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libdl.so": {
+            "fileVersion": "0.0.0.0"
+          },
+          "liblog.so": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libm.so": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libz.so": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libarchive-dso-stub.so": {
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Microsoft.Android.Runtime.Mono.36.android-arm64/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "",
+      "path": "microsoft.android.runtime.mono.36.android-arm64/1.0.0"
+    }
+  }
+}
